@@ -3,9 +3,6 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { Document, Page } from "react-pdf";
 import { IconeSeta, IconeSetaDireita, IconeSetaEsquerda, IconeVoltar, IconeRotacao } from "./Icons/Icons";
 import loading from './Icons/loadin.gif'
-
-
-
 interface GeradorPdfProps {
     nomeArquivo?: string
     rotate?: number
