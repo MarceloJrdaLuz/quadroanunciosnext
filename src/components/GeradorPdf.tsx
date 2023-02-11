@@ -14,6 +14,7 @@ export default function GeradorPdf(props: GeradorPdfProps) {
     const [numPages, setNumPages] = useState(null)
     const [numberPage, setNumberPage] = useState(1)
     const [rotacao, setRotacao] = useState(props.rotate ? props.rotate : 0)
+    const [widthView, setWidthView] = useState(innerWidth)
     const ultimaPagina = numPages
     const primeiraPagina = numPages - numPages + 1
 
@@ -28,7 +29,7 @@ export default function GeradorPdf(props: GeradorPdfProps) {
         return (
             <div className="bg-gray-300 h-screen w-screen flex justify-center items-center">
                 <div className="text-2xl text-center font-semibold text-gray-900  bg-teste-200 px-20 py-10 shadow shadow-slate-900  md:px-32 md:py-12 rounded-lg w-5/6">Arquivo não disponível</div>
-                <div onClick={()=> props.setPdfShow(false)} className="absolute flex justify-start rounded-full bg-teste-200 p-2 hover:border hover:border-teste-100 top-10">
+                <div onClick={() => props.setPdfShow(false)} className="absolute flex justify-start rounded-full bg-teste-200 p-2 hover:border hover:border-teste-100 top-10">
                     {IconeSeta}Voltar
                 </div>
             </div>
@@ -57,8 +58,8 @@ export default function GeradorPdf(props: GeradorPdfProps) {
                         {IconeSetaDireita}
                     </div>
                     <div
-                    onClick={()=>{setRotacao(rotacao === 0 ? rotacao + 90 : rotacao -90)}}
-                    className="flex flex-col ml-4 justify-center items-center pb-1"
+                        onClick={() => { setRotacao(rotacao === 0 ? rotacao + 90 : rotacao - 90) }}
+                        className="flex flex-col ml-4 justify-center items-center pb-1"
                     >
                         Girar
                         {IconeRotacao}
@@ -78,7 +79,7 @@ export default function GeradorPdf(props: GeradorPdfProps) {
                 rotate={rotacao}
             >
                 <Page
-                    height={570}
+                    height={widthView < 400 ? 460 : 570}
                     pageNumber={numberPage}
                 />
             </Document>
