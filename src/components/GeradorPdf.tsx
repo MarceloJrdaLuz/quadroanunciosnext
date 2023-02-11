@@ -74,7 +74,7 @@ export default function GeradorPdf(props: GeradorPdfProps) {
         <section className="flex flex-col h-screen w-screen items-center justify-center  overflow-auto bg-gray-200">
 
             <Document
-                file={`https://marceloupload.s3.sa-east-1.amazonaws.com/-${props.nomeArquivo}.pdf?rand=${Date.now()}`}
+                file={`${process.env.NEXT_PUBLIC_AWS_LINK}-${props.nomeArquivo}.pdf?rand=${Date.now()}`}
                 onLoadSuccess={onDocumentLoadSuccess}
                 loading={<Image src={loading} alt="Gif de carregamento"></Image>}
                 error={renderError}
